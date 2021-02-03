@@ -10,7 +10,7 @@ class GreetingResource {
 
     @GET
     @Produces(MediaType.TEXT_PLAIN)
-    fun hello() = "Hello RESTEasy ${getNames()}"
+    fun hello() = "Hello ${getNames()}"
 
     fun getNames(): List<String> {
         val foreNames = arrayOf("Rohan","Nathaniel","Anthony","Chris","Jonathan","Lemur","Harry","Percy","Peregrine","James","Jamie","Sidney","Gabriel","Leyton","Curtley","Jarvis")
@@ -43,9 +43,7 @@ class GreetingResource {
         return names
     }
 
-    fun isVowel(inChar: Char) : Boolean {
-        return (inChar == 'a' || inChar == 'e' || inChar == 'i' || inChar == 'o' || inChar == 'u')
-    }
+    fun isVowel(x: Char) = (x == 'a' || x == 'e' || x == 'i' || x == 'o' || x == 'u')
 
     fun syllableCount(inStr: String): Int {
         if (inStr == "Anthony" || inStr == "Gabriel") {
@@ -65,14 +63,12 @@ class GreetingResource {
 
             if (wasVowel && ((lastChar == 'u' && c == 'a') || (lastChar == 'i' && c == 'a'))) {
                 syllables++
-            }
-            else if (isVowel(c) || c == 'y') {
+            } else if (isVowel(c) || c == 'y') {
                 if (!wasVowel && (c != 'e' || idx < inStr.length - 1)) {
                     syllables++
                     wasVowel = true
                 }
-            }
-            else {
+            } else {
                 wasVowel = false
             }
 
